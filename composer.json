@@ -1,0 +1,14 @@
+{
+    "name": "nurimantjiptarto/first-program",
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nurimantjiptarto",
+            "email": "nkt5@njit.edu"
+        }
+    ],
+    "require": {}
+}
