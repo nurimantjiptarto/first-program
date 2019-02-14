@@ -3,11 +3,20 @@
     "require-dev": {
         "phpunit/phpunit": "^8.0"
     },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
     "license": "MIT",
     "authors": [
         {
             "name": "nurimantjiptarto",
             "email": "nkt5@njit.edu"
+        },
+        {
+            "name": "thetarkus",
+            "email": "mike@mikemob.com"
         }
     ],
     "require": {}
