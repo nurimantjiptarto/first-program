@@ -9,4 +9,10 @@ final class Bird extends Animal
         return true;
     }
 
+    public function canFly(): bool{
+        return true;
+    }
+
+    
+
 }

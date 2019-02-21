@@ -6,7 +6,19 @@
  * Time: 05:45
  */
 
-class Human
+declare(strict_types=1);
+
+final class Human extends Animal
 {
+
+    public function hasHands(): bool {
+        return true;
+    }
+
+    public function canWalk(): bool{
+        return true;
+
+    }
+
 
 }

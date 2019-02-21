@@ -20,6 +20,12 @@ final class BirdTest extends TestCase
         $this->assertTrue($bird->hasWings());
     }
 
+    public function testBirdCanFly(): void
+    {
+        $bird = new Bird('Owl', 4);
+        $this->assertTrue(method_exists($bird, "canFLy"));
+        $this->assertTrue($bird->canFly());
+    }
 
     public function testBirdDoesNotHaveHands(): void
     {
