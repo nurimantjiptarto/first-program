@@ -36,4 +36,14 @@ class BirdFactory {
     public static function create(string $family, string $name, string $location) {
         return new Bird($family, $name, $location);
     }
+
+    public static function createFromCSV(string $filename) {
+        $data = Utils\File::readCSVToArray($filename);
+        $records = [];
+        foreach ($data as $record)
+            $records[] = BirdFactory::create(
+                $record->BirdFamily, $record->BirdName, $record->BirdLocation
+            );
+        return $records;
+    }
 }
