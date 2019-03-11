@@ -14,3 +14,11 @@ class Bird {
         $this->location = $location;
     }
 }
+
+
+
+class BirdFactory {
+    public static function create(string $family, string $name, string $location) {
+        return new Bird($family, $name, $location);
+    }
+}
