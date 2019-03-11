@@ -9,5 +9,8 @@ update:
 test:
 	./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/*
 
-serve:
+serve: dump
 	php -S localhost:8080 -t src/
+
+dump:
+	composer dump-autoload
