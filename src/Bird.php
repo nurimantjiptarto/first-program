@@ -13,6 +13,21 @@ class Bird {
         $this->name = $name;
         $this->location = $location;
     }
+
+
+    public function asTableRow() {
+        return "<tr><td>" . $this->family . "</td>" .
+            "<td>" . $this->name . "</td>" .
+            "<td>" . $this->location . "</td></tr>";
+    }
+
+
+    public static function asTable(object $records) {
+        echo "<thead><th>Family</th><th>Name</th><th>Location</th></thead><tbody>";
+        foreach ($records as $bird)
+            echo $bird->asTableRow();
+        echo "</tbody>";
+    }
 }
 
 
