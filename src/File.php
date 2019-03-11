@@ -1,35 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kwilliams
- * Date: 2/21/19
- * Time: 11:36 AM
- */
+declare(strict_types=1);
+namespace Utils;
+
+
 
 class File
 {
-
-    public static function readCSVtoArray(String $filename, String $class):array
+    public static function readCSVToArray(string $filename): array
     {
-        $records = Array();
+        $records = [];
+        if (($handle = fopen($filename, "r")) === FALSE)
+            return $records;
+
         $count = 0;
-        $fieldNames = '';
-
-        if (($handle = fopen($filename, "r")) !== FALSE) {
-            while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
-
-                if($count == 0) {
-                    $fieldNames = $row;
-                } else {
-                    $records[] = (object) array_combine($fieldNames, $row);
-                }
-                $count++;
-            }
-            fclose($handle);
+        while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            if ($count++ < 1)
+                $fieldNames = $row;
+            else
+                $records[] = (object) array_combine($fieldNames, $row);
         }
 
+        fclose($handle);
         return $records;
     }
-
-
 }
