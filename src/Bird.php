@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 
+
 class Bird {
     private $family;
     private $name;
@@ -22,7 +23,7 @@ class Bird {
     }
 
 
-    public static function asTable(object $records) {
+    public static function asTable(array $records) {
         echo "<thead><th>Family</th><th>Name</th><th>Location</th></thead><tbody>";
         foreach ($records as $bird)
             echo $bird->asTableRow();
