@@ -16,14 +16,14 @@ class Bird {
     }
 
 
-    public function asTableRow() {
+    public function asTableRow(): string {
         return "<tr><td>" . $this->family . "</td>" .
             "<td>" . $this->name . "</td>" .
             "<td>" . $this->location . "</td></tr>";
     }
 
 
-    public static function asTable(array $records) {
+    public static function asTable(array $records): void {
         echo "<thead><th>Family</th><th>Name</th><th>Location</th></thead><tbody>";
         foreach ($records as $bird)
             echo $bird->asTableRow();
@@ -34,11 +34,11 @@ class Bird {
 
 
 class BirdFactory {
-    public static function create(string $family, string $name, string $location) {
+    public static function create(string $family, string $name, string $location): Bird {
         return new Bird($family, $name, $location);
     }
 
-    public static function createFromCSV(string $filename) {
+    public static function createFromCSV(string $filename): array {
         $data = Utils\File::readCSVToArray($filename);
         $records = [];
         foreach ($data as $record)
