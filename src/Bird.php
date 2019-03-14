@@ -2,39 +2,60 @@
 declare(strict_types=1);
 
 
-final class Bird extends Animal
+
+class Bird
 {
-    public $shape;
-    public $location;
+    private $family;
+    private $name;
+    private $location;
 
-    public function hasWings(): bool {
-        return true;
+
+    public function __construct(string $family, string $name, string $location)
+    {
+        $this->family = $family;
+        $this->name = $name;
+        $this->location = $location;
     }
 
-    public function canFly(): bool{
-        return true;
+
+    public function asTableRow(): string
+    {
+        return "<tr><td>" . $this->family . "</td>" .
+            "<td>" . $this->name . "</td>" .
+            "<td>" . $this->location . "</td></tr>";
     }
 
-    public static function fromCSVFile($fileName): array { 
-        if (($handle = fopen($fileName, "r")) === FALSE) {
-            fclose($handle);
-            return [];
-        }
 
-        while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            if ($ignoreNameRow == NULL) {
-                $ignoreNameRow = true;
-                continue;
-            }
+    public static function asTable(array $records): void
+    {
+        echo "<thead><th>Family</th><th>Name</th><th>Location</th></thead><tbody>";
+        foreach ($records as $bird)
+            echo $bird->asTableRow();
+        echo "</tbody>";
 
-            $bird = new Bird($row[1], 4);
-            $bird->shape = $row[0];
-            $bird->location = $row[2];
-            $result[] = $bird;
-        }
 
-        fclose($handle);
-        return $result;
     }
 
+    public static function asTableFromCSV(string $filename): void {
+        Bird::asTable(
+            BirdFactory::createFromCSV($filename)
+        );
+    }
+}
+
+
+class BirdFactory {
+    public static function create(string $family, string $name, string $location): Bird {
+        return new Bird($family, $name, $location);
+    }
+
+    public static function createFromCSV(string $filename): array {
+        $data = Utils\File::readCSVToArray($filename);
+        $records = [];
+        foreach ($data as $record)
+            $records[] = BirdFactory::create(
+                $record->BirdFamily, $record->BirdName, $record->BirdLocation
+            );
+        return $records;
+    }
 }

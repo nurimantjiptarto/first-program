@@ -7,30 +7,45 @@ use PHPUnit\Framework\TestCase;
 final class BirdTest extends TestCase
 {
 
-    public function testBirdIsAnAnimal(): void
+    public static function birdObject(): Bird
     {
-        $this->assertInstanceOf(Animal::class, new Bird('Owl', 4));
+        return new Bird("A", "B", "C");
     }
 
-
-    public function testBirdHasWings(): void
+    public function testBirdCanBeCreated(): void
     {
-        $bird = new Bird('Owl', 4);
-        $this->assertTrue(method_exists($bird, "hasWings"));
-        $this->assertTrue($bird->hasWings());
+        $bird = BirdTest::birdObject();
+        $this->assertTrue(isSet($bird));
     }
 
-    public function testBirdCanFly(): void
+    public function testBirdOutputsTable(): void
     {
-        $bird = new Bird('Owl', 4);
-        $this->assertTrue(method_exists($bird, "canFLy"));
-        $this->assertTrue($bird->canFly());
+        $bird = BirdTest::birdObject();
+        $this->expectOutputRegex("(A.*B.*C)");
+        Bird::asTable([$bird]);
     }
 
-    public function testBirdDoesNotHaveHands(): void
+    public function testBirdOutputsAsTableFromCSV(): void
     {
-        $bird = new Bird('Columbidae', 4);
-        $this->assertFalse(method_exists($bird, "hasHands"));
+        $bird = BirdTest::birdObject();
+        $this->expectOutputRegex("(.*<tbody>.*)");
+        $bird->asTableFromCSV("./data/birdtypes.csv");
     }
+
+    public function testBirdOutputsAsTableFromCSV(): void
+    {
+        $bird = BirdTest::birdObject();
+        $this->expectOutputRegex("(.*<tbody>.*)");
+        $bird->asTableFromCSV("./data/birdtypes.csv");
+    }
+
+    public function testBirdOutputsTableRow(): void
+    {
+        $bird = BirdTest::birdObject();
+        $expected = "<tr><td>A</td><td>B</td><td>C</td></tr>";
+        $this->expectOutputString($expected);
+        $bird->asTableRow();
+    }
+
 
 }

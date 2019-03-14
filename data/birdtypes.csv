@@ -1,4 +1,4 @@
-shape, name, location
-Auks, Atlantic Puffin, North Atlantic
-Flycatcher, Black Phoebe, United States
-Woodpecker, Red-Breasted Sapsucker, United States
+BirdFamily,BirdName,BirdLocation
+Auks,Atlantic Puffin,North Atlantic
+Flycatcher,Black Phoebe,United States
+Woodpecker,Red-Breasted Sapsucker,United States
