@@ -18,4 +18,18 @@ final class BirdTest extends TestCase
         $this->assertTrue(isSet($bird));
     }
 
+    public function testBirdOutputsTable(): void
+    {
+        $bird = BirdTest::birdObject();
+        $this->expectOutputRegex("(A.*B.*C)");
+        Bird::asTable([$bird]);
+    }
+
+    public function testBirdOutputsAsTableFromCSV(): void
+    {
+        $bird = BirdTest::birdObject();
+        $this->expectOutputRegex("(.*<tbody>.*)");
+        $bird->asTableFromCSV("./data/birdtypes.csv");
+    }
+
 }
