@@ -32,4 +32,20 @@ final class BirdTest extends TestCase
         $bird->asTableFromCSV("./data/birdtypes.csv");
     }
 
+    public function testBirdOutputsAsTableFromCSV(): void
+    {
+        $bird = BirdTest::birdObject();
+        $this->expectOutputRegex("(.*<tbody>.*)");
+        $bird->asTableFromCSV("./data/birdtypes.csv");
+    }
+
+    public function testBirdOutputsTableRow(): void
+    {
+        $bird = BirdTest::birdObject();
+        $expected = "<tr><td>A</td><td>B</td><td>C</td></tr>";
+        $this->expectOutputString($expected);
+        $bird->asTableRow();
+    }
+
+
 }
