@@ -1,5 +1,9 @@
 {
     "name": "nurimantjiptarto/first-program",
+    "require": {
+        "php": "^7.2.0",
+        "phpunit/phpunit": "^8.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "^8.0"
     },
@@ -18,6 +22,5 @@
             "name": "thetarkus",
             "email": "mike@mikemob.com"
         }
-    ],
-    "require": {}
+    ]
 }
